@@ -4,7 +4,7 @@
 
 #include <math.h>
 
-#include "GL/glut.h"
+#include <GL/glut.h>
 
 
 #define RADIUS 50.0f
