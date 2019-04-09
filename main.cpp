@@ -4,7 +4,9 @@
 
 #include <math.h>
 
-#include <GL/glut.h>
+#include "GL/glut.h"
+#include "GL/gl.h"
+#include "GL/glu.h"
 
 
 #define RADIUS 50.0f
@@ -27,7 +29,7 @@ GLint nSelected = CONE;
 void OnDisplay(void)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glEnable(GL_DEPTH_TEST); //使能深度检�?
+    glEnable(GL_DEPTH_TEST); //使能深度检�?
 
     glPushMatrix();
     {
@@ -36,7 +38,7 @@ void OnDisplay(void)
         glEnable(GL_NORMALIZE);  //归一化法向量
         switch(nSelected)
         {
-            case(CONE):             //圆锥�?
+            case(CONE):             //圆锥�?
                 if (bWire)
                 {
                     glutWireCone(RADIUS, 2 * RADIUS, 30, 30);
@@ -47,7 +49,7 @@ void OnDisplay(void)
                 }
                 break;
 
-            case(TETRAHEDRON):     //四面�?
+            case(TETRAHEDRON):     //四面�?
                 glPushMatrix();
                 {
                     glScalef(RADIUS, RADIUS, RADIUS);
@@ -63,7 +65,7 @@ void OnDisplay(void)
                 glPopMatrix();
                 break;
 
-            case(CUBE):   //正方�?
+            case(CUBE):   //正方�?
                 if(bWire)
                 {
                     glutWireCube(1.5 * RADIUS);
@@ -74,7 +76,7 @@ void OnDisplay(void)
                 }
                 break;
 
-            case(DODECAHEDRON): //正十二面�?
+            case(DODECAHEDRON): //正十二面�?
                 glPushMatrix();
                 {
                     glScalef(RADIUS/2, RADIUS/2, RADIUS/2);
@@ -122,7 +124,7 @@ void OnDisplay(void)
                 glPopMatrix();
                 break;
 
-            case(SPHERE):   //圆环�?
+            case(SPHERE):   //圆环�?
                 if(bWire)
                 {
                     glutWireSphere(RADIUS, 30, 30);
@@ -203,26 +205,26 @@ void CreateMenu()
     glutAddMenuEntry("TEAPOT", TEAPOT);
     glutAddMenuEntry("WIRED", WIRED);
 
-    glutAttachMenu(GLUT_RIGHT_BUTTON);  //指定菜单事件由鼠标右键单击产�?
+    glutAttachMenu(GLUT_RIGHT_BUTTON);  //指定菜单事件由鼠标右键单击产�?
 }
 
 void SetupLights()
 {
-    GLfloat ambientLight[]  = {0.2f,  0.2f,  0.2f,  1.0f};//环境�?
-    GLfloat diffuseLight[]  = {0.9f,  0.9f,  0.9f,  1.0f};//漫反�?
-    GLfloat specularLight[] = {1.0f,  1.0f,  1.0f,  1.0f};//镜面�?
+    GLfloat ambientLight[]  = {0.2f,  0.2f,  0.2f,  1.0f};//环境�?
+    GLfloat diffuseLight[]  = {0.9f,  0.9f,  0.9f,  1.0f};//漫反�?
+    GLfloat specularLight[] = {1.0f,  1.0f,  1.0f,  1.0f};//镜面�?
     GLfloat lightPos[]      = {50.0f, 80.0f, 60.0f, 1.0f};//光源位置
 
     glEnable(GL_LIGHTING);								//启用光照
     glLightfv(GL_LIGHT0, GL_AMBIENT, ambientLight);		//设置环境光源
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseLight);		//设置漫反射光�?
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseLight);		//设置漫反射光�?
     glLightfv(GL_LIGHT0, GL_SPECULAR, specularLight);	//设置镜面光源
     glLightfv(GL_LIGHT0, GL_POSITION, lightPos);		//设置灯光位置
-    glEnable(GL_LIGHT0);								//打开第一个灯�?
+    glEnable(GL_LIGHT0);								//打开第一个灯�?
 
-    glEnable(GL_COLOR_MATERIAL);						//启用材质的颜色跟�?
-    glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);	//指定材料着色的�?
-    glMaterialfv(GL_FRONT, GL_SPECULAR, specularLight); //指定材料对镜面光的反�?
+    glEnable(GL_COLOR_MATERIAL);						//启用材质的颜色跟�?
+    glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);	//指定材料着色的�?
+    glMaterialfv(GL_FRONT, GL_SPECULAR, specularLight); //指定材料对镜面光的反�?
     glMateriali(GL_FRONT, GL_SHININESS, 100);           //指定反射系数
 }
 
@@ -231,7 +233,7 @@ int main(int argc, char* argv[])
     glutInit(&argc, argv);										//初始化OpenGL
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);   //设置显示模式
     glutInitWindowSize(600, 480);
-    glutCreateWindow("GLUT提供�?9种实体对�?");
+    glutCreateWindow("GLUT提供�?9种实体对�?");
 
     glutCreateMenu(OnMenu);
     glutReshapeFunc(OnReshape);
@@ -240,6 +242,6 @@ int main(int argc, char* argv[])
     CreateMenu();					//实际生成菜单
     SetupLights();					//设置光照
 
-    glutMainLoop();					//进入OpenGL主循�?
+    glutMainLoop();					//进入OpenGL主循�?
     return 0;
 }

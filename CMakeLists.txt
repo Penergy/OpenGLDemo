@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 project(openGLUtahTeePot)
 
-message(STATUS ${CMAKE_CURRENT_LIST_DIR})
-
 # turn off the optimazation under Debug configuration
 if (CMAKE_CXX_COMPILER_ID MATCHES GNU)
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0")
@@ -51,18 +49,25 @@ if(WIN32)
         )
     endif()
 elseif(UNIX)
-    target_compile_options(ModelConverter PRIVATE -std=c++11 -g)
+    target_compile_options(openGLUtahTeePot PRIVATE -std=c++11 -g)
     if(CMAKE_BUILD_TYPE MATCHES Debug)
+        message(STATUS "Linux debug")
         target_link_libraries(
-            openGLUtahTeePot 
+            openGLUtahTeePot
             ${CMAKE_CURRENT_LIST_DIR}/dependencies/linux64/libglut.so
-            ${CMAKE_CURRENT_LIST_DIR}/dependencies/linux64/libopengl.so 
+            #${CMAKE_CURRENT_LIST_DIR}/dependencies/linux64/libopengl.so
+            ${CMAKE_CURRENT_LIST_DIR}/dependencies/linux64/libGL.so
+            ${CMAKE_CURRENT_LIST_DIR}/dependencies/linux64/libGLU.so
+
         )
     elseif(CMAKE_BUILD_TYPE MATCHES Release)
+        message(STATUS "Linux release")
         target_link_libraries(
-            openGLUtahTeePot 
+            openGLUtahTeePot
             ${CMAKE_CURRENT_LIST_DIR}/dependencies/linux64/libglut.so
-            ${CMAKE_CURRENT_LIST_DIR}/dependencies/linux64/libopengl.so 
+            #${CMAKE_CURRENT_LIST_DIR}/dependencies/linux64/libopengl.so
+            ${CMAKE_CURRENT_LIST_DIR}/dependencies/linux64/libGL.so
+            ${CMAKE_CURRENT_LIST_DIR}/dependencies/linux64/libGLU.so
         )
     endif()
     set_target_properties(openGLUtahTeePot
