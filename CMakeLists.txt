@@ -35,17 +35,20 @@ target_include_directories(
 )
 
 if(WIN32)
+    # TODO OpenGL in Windows
     if(CMAKE_BUILD_TYPE MATCHES Debug)
         target_link_libraries(
             openGLUtahTeePot 
             ${CMAKE_CURRENT_LIST_DIR}/dependencies/win64/glut.lib
             ${CMAKE_CURRENT_LIST_DIR}/dependencies/win64/OpenGL32.Lib 
+            ${CMAKE_CURRENT_LIST_DIR}/dependencies/win64/freeglut.Lib 
         )
     elseif(CMAKE_BUILD_TYPE MATCHES Release)
         target_link_libraries(
             openGLUtahTeePot 
             ${CMAKE_CURRENT_LIST_DIR}/dependencies/win64/glut.lib
             ${CMAKE_CURRENT_LIST_DIR}/dependencies/win64/OpenGL32.Lib
+            ${CMAKE_CURRENT_LIST_DIR}/dependencies/win64/freeglut.Lib
         )
     endif()
 elseif(UNIX)

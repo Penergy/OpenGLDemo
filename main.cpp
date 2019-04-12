@@ -192,7 +192,7 @@ void OnMenu(int value)
     glutPostRedisplay();
 }
 
-void CreateMenu()
+void CreateMenu(void)
 {
     glutAddMenuEntry("Cone", CONE);
     glutAddMenuEntry("Tetradron", TETRAHEDRON);
@@ -205,7 +205,8 @@ void CreateMenu()
     glutAddMenuEntry("TEAPOT", TEAPOT);
     glutAddMenuEntry("WIRED", WIRED);
 
-    glutAttachMenu(GLUT_RIGHT_BUTTON);  //指定菜单事件由鼠标右键单击产�?
+    glutAttachMenu(GLUT_RIGHT_BUTTON);  
+    
 }
 
 void SetupLights()
@@ -242,6 +243,6 @@ int main(int argc, char* argv[])
     CreateMenu();					//实际生成菜单
     SetupLights();					//设置光照
 
-    glutMainLoop();					//进入OpenGL主循�?
+    glutMainLoop();					//进入OpenGL主循�??
     return 0;
 }
